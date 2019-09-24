@@ -17,6 +17,8 @@ buildscript {
     ext {
         // App dependencies
         daggerVersion = "2.24"
+        retrofitVersion = "2.6.1"
+        okhttpVersion = "3.14.2"
     }
 }
 
