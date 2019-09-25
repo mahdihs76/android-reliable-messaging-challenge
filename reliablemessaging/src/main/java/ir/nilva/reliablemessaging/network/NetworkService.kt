@@ -2,6 +2,7 @@ package ir.nilva.reliablemessaging.network
 
 import okhttp3.ResponseBody
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.FieldMap
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
@@ -14,6 +15,6 @@ interface NetworkService {
     suspend fun sendMessage(
         @Url url : String,
         @FieldMap message: Map<String, String>
-    ): Call<ResponseBody>
+    ): Response<ResponseBody>
 
 }

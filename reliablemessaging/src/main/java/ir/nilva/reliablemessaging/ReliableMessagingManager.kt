@@ -6,7 +6,7 @@ import ir.nilva.reliablemessaging.work.MessageWorker
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-const val KEY_DATA = "KEY_DATA"
+const val KEY_URL = "KEY_URL"
 const val BACK_OFF_DELAY = 2L
 
 class ReliableMessagingHandler {
@@ -15,16 +15,16 @@ class ReliableMessagingHandler {
     lateinit var workManager: WorkManager
 
     fun send(
-        id: Long, data: String,
+        url: String, id: Long, data: Map<String, String>,
         listener: ReliableMessagingListener
     ) {
-
         val workRequest =
             OneTimeWorkRequestBuilder<MessageWorker>()
                 .setInputData(
-                    workDataOf(
-                        KEY_DATA to data
-                    )
+                    Data.Builder()
+                        .putString(KEY_URL, url)
+                        .putAll(data)
+                        .build()
                 ).setBackoffCriteria(
                     BackoffPolicy.EXPONENTIAL,
                     BACK_OFF_DELAY,
