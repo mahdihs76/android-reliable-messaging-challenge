@@ -52,7 +52,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun getMainInterface(retrofit: Retrofit): NetworkService =
+    fun getNetworkService(retrofit: Retrofit): NetworkService =
         retrofit.create(NetworkService::class.java)
 
 }

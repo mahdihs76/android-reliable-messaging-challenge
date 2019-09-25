@@ -54,6 +54,9 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
     api "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
 
+    // WorkManager Dependency
+    implementation "androidx.work:work-runtime-ktx:$rootProject.workManagerVersion"
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
