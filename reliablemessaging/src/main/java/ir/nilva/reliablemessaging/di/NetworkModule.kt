@@ -19,9 +19,8 @@ class NetworkModule {
     fun provideRetrofit(
         converter: GsonConverterFactory,
         httpClient: OkHttpClient.Builder,
-        @Named("baseUrl") baseUrl: String
-    ) = NetworkServiceGenerator(converter, httpClient, baseUrl)
-        .getClient()
+        @Named("baseURL") baseUrl: String
+    ): Retrofit = NetworkServiceGenerator(converter, httpClient, baseUrl).getClient()
 
     @Singleton
     @Provides
