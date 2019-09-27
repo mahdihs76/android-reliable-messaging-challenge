@@ -14,7 +14,8 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "ir.nilva.reliablemessaging.MockRunner"
         consumerProguardFiles 'consumer-rules.pro'
     }
 
@@ -32,6 +33,12 @@ android {
 
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
     }
 
 }
@@ -56,11 +63,19 @@ dependencies {
 
     // WorkManager Dependency
     implementation "androidx.work:work-runtime-ktx:$rootProject.workManagerVersion"
+    androidTestImplementation "androidx.work:work-testing:$rootProject.workManagerVersion"
 
     // Logger Dependency
     implementation "com.jakewharton.timber:timber:$rootProject.loggerVersion"
 
+    // (Test) Robolectric Dependency
+    testImplementation "org.robolectric:robolectric:$rootProject.roboVersion"
+
     testImplementation 'junit:junit:4.12'
+    androidTestImplementation "android.arch.core:core-testing:1.1.1"
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$rootProject.okhttpVersion"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

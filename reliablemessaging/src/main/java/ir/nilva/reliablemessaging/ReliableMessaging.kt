@@ -3,8 +3,7 @@ package ir.nilva.reliablemessaging
 import android.content.Context
 import ir.nilva.reliablemessaging.di.DaggerLibraryComponent
 import ir.nilva.reliablemessaging.di.LibraryComponent
-import ir.nilva.reliablemessaging.di.NetworkModule
-import ir.nilva.reliablemessaging.di.WorkModule
+import ir.nilva.reliablemessaging.di.LibraryModule
 
 
 object ReliableMessaging {
@@ -20,8 +19,7 @@ object ReliableMessaging {
     private fun initDaggerComponent() {
         component = DaggerLibraryComponent
             .builder()
-            .networkModule(NetworkModule())
-            .workModule(WorkModule())
+            .libraryModule(LibraryModule())
             .build()
     }
 }

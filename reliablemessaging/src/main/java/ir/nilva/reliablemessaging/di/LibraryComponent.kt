@@ -4,12 +4,12 @@ import androidx.work.WorkManager
 import dagger.Component
 import ir.nilva.reliablemessaging.ReliableMessagingManager
 import ir.nilva.reliablemessaging.network.NetworkService
-import ir.nilva.reliablemessaging.repository.DataRepository
+import ir.nilva.reliablemessaging.work.MessageWorker
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [NetworkModule::class, WorkModule::class])
+@Component(modules = [LibraryModule::class])
 interface LibraryComponent {
 
     fun getNetwork(): Retrofit
@@ -18,8 +18,8 @@ interface LibraryComponent {
 
     fun getWorkManager(): WorkManager
 
-    fun getRepository() : DataRepository
-
     fun inject(manager: ReliableMessagingManager)
+
+    fun inject(worker: MessageWorker)
 
 }

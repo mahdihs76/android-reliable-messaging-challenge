@@ -1,7 +1,10 @@
 package ir.nilva.reliablemessaging.di
 
+import android.content.Context
+import androidx.work.WorkManager
 import dagger.Module
 import dagger.Provides
+import ir.nilva.reliablemessaging.ApplicationContext
 import ir.nilva.reliablemessaging.network.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -13,11 +16,16 @@ import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
-class NetworkModule {
+open class LibraryModule {
+
+    @Provides
+    fun provideContext(): Context {
+        return ApplicationContext.context
+    }
 
     @Singleton
     @Provides
-    fun provideRetrofit(
+    open fun provideRetrofit(
         converter: GsonConverterFactory,
         httpClient: OkHttpClient.Builder,
         @Named("baseURL") baseUrl: String
@@ -62,4 +70,9 @@ class NetworkModule {
     fun getNetworkService(retrofit: Retrofit): NetworkService =
         retrofit.create(NetworkService::class.java)
 
+    @Singleton
+    @Provides
+    fun provideWorkManager(context: Context): WorkManager =
+        WorkManager.getInstance(context)
+    
 }
