@@ -21,6 +21,10 @@ buildscript {
         okhttpVersion = "3.14.2"
         workManagerVersion = "2.2.0"
         roomVersion = "2.2.0-rc01"
+        loggerVersion = "4.7.1"
+        recyclerViewVersion = "1.0.0"
+        lifecycleExtensionsVersion = "1.1.1"
+        lifecycleViewModelVersion = "2.2.0-alpha05"
     }
 }
 
