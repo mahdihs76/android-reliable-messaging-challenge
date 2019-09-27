@@ -7,12 +7,16 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 const val KEY_URL = "KEY_URL"
-const val BACK_OFF_DELAY = 2L
+const val BACK_OFF_DELAY = WorkRequest.MIN_BACKOFF_MILLIS
 
 class ReliableMessagingHandler {
 
     @Inject
     lateinit var workManager: WorkManager
+
+    init {
+        ReliableMessaging.component.inject(this)
+    }
 
     fun send(
         url: String, id: Long, data: Map<String, String>,
@@ -28,7 +32,7 @@ class ReliableMessagingHandler {
                 ).setBackoffCriteria(
                     BackoffPolicy.EXPONENTIAL,
                     BACK_OFF_DELAY,
-                    TimeUnit.SECONDS
+                    TimeUnit.MILLISECONDS
                 )
                 .setConstraints(prepareWorkConstraints())
                 .build()
