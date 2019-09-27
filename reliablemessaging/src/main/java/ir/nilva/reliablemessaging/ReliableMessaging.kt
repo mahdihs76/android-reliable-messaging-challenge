@@ -11,10 +11,10 @@ object ReliableMessaging {
 
     lateinit var component: LibraryComponent
 
-    fun with(context: Context): ReliableMessagingHandler {
+    fun with(context: Context): ReliableMessagingManager {
         ApplicationContext.initialize(context)
         initDaggerComponent()
-        return ReliableMessagingHandler()
+        return ReliableMessagingManager()
     }
 
     private fun initDaggerComponent() {

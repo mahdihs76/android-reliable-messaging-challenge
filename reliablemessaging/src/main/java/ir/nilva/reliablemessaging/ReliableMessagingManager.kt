@@ -9,7 +9,7 @@ import javax.inject.Inject
 const val KEY_URL = "KEY_URL"
 const val BACK_OFF_DELAY = WorkRequest.MIN_BACKOFF_MILLIS
 
-class ReliableMessagingHandler {
+class ReliableMessagingManager {
 
     @Inject
     lateinit var workManager: WorkManager

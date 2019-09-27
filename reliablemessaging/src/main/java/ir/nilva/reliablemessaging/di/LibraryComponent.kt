@@ -2,7 +2,7 @@ package ir.nilva.reliablemessaging.di
 
 import androidx.work.WorkManager
 import dagger.Component
-import ir.nilva.reliablemessaging.ReliableMessagingHandler
+import ir.nilva.reliablemessaging.ReliableMessagingManager
 import ir.nilva.reliablemessaging.network.NetworkService
 import ir.nilva.reliablemessaging.repository.DataRepository
 import retrofit2.Retrofit
@@ -20,6 +20,6 @@ interface LibraryComponent {
 
     fun getRepository() : DataRepository
 
-    fun inject(handler: ReliableMessagingHandler)
+    fun inject(manager: ReliableMessagingManager)
 
 }
