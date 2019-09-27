@@ -5,6 +5,7 @@ import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import ir.nilva.pushechallenge.MainApplication
+import ir.nilva.pushechallenge.di.module.AppModule
 import javax.inject.Singleton
 
 @Singleton
@@ -21,7 +22,4 @@ interface AppComponent : AndroidInjector<MainApplication> {
     interface Factory {
         fun create(@BindsInstance application: MainApplication): AppComponent
     }
-
-//    fun inject(newsViewModel: TimelineViewModel)
-
 }

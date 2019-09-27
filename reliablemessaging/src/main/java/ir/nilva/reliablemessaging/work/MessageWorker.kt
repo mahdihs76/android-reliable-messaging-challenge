@@ -13,6 +13,7 @@ class MessageWorker(
     private val workParams: WorkerParameters
 ) : CoroutineWorker(context, workParams) {
 
+    @Suppress("UNCHECKED_CAST")
     override suspend fun doWork(): Result = coroutineScope {
         Timber.d("WORK --->>> START")
 

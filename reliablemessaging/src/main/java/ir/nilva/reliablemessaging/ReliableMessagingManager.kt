@@ -20,7 +20,7 @@ class ReliableMessagingManager {
 
     fun send(
         url: String, id: Long, data: Map<String, String>,
-        listener: ReliableMessagingListener
+        listener: (Long, Int, Boolean) -> Unit
     ) {
         val workRequest =
             OneTimeWorkRequestBuilder<MessageWorker>()
@@ -42,11 +42,12 @@ class ReliableMessagingManager {
         workManager.getWorkInfoByIdLiveData(workRequest.id).apply {
             observeForever(object : Observer<WorkInfo> {
                 override fun onChanged(workInfo: WorkInfo?) {
-                    workInfo?.takeIf {
-                        workInfo.state == WorkInfo.State.SUCCEEDED
-                    }?.let {
-                        listener.complete(id, workInfo.runAttemptCount)
+                    workInfo ?: return
+                    if (workInfo.state == WorkInfo.State.SUCCEEDED) {
+                        listener(id, workInfo.runAttemptCount, true)
                         removeObserver(this)
+                    } else {
+                        listener(id, workInfo.runAttemptCount, false)
                     }
                 }
             })

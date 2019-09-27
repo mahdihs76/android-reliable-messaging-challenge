@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="message"
+            type="ir.nilva.pushechallenge.db.data.Message" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@{message.isSuccessful}"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/messageId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`Id : ` + message.id}"
+            android:textColor="@{message.isSuccessful}"/>
+
+
+        <TextView
+            android:id="@+id/messageData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/messageId"
+            android:text="@{`Data : ` + message.data}"
+            android:textColor="@{message.isSuccessful}"/>
+
+
+
+        <TextView
+            android:id="@+id/messageSendAttempts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/messageData"
+            android:text="@{`NumberOfAttempts : ` +message.sendAttempts}"
+            android:textColor="@{message.isSuccessful}"/>
+
+
+    </RelativeLayout>
+
+</layout>
