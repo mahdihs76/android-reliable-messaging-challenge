@@ -7,6 +7,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
@@ -34,9 +35,16 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provedHttpLoggingInterceptor(): HttpLoggingInterceptor =
-        HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
+    fun provideHttpLoggingInterceptor(logger: HttpLoggingInterceptor.Logger)
+            : HttpLoggingInterceptor = HttpLoggingInterceptor(logger).apply {
+        level = HttpLoggingInterceptor.Level.BODY
+    }
+
+    @Singleton
+    @Provides
+    fun provedHttpLogger(): HttpLoggingInterceptor.Logger =
+        HttpLoggingInterceptor.Logger {
+            Timber.tag("OkHttp").d(it)
         }
 
     @Singleton
